@@ -48,7 +48,7 @@ def test_solution_builder():
     field = Field.build_field_from_file('test_files/1.txt')
     solver = Solver(field)
     solutions = solver.solve_puzzle()
-    solutions_builder = SolutionBuilder(solutions, field)
+    solutions_builder = SolutionBuilder(solutions, field, -1)
     solutions_pics = solutions_builder.get_lined_solutions()
     assert len(solutions) == len(solutions_pics)
 
@@ -59,7 +59,7 @@ def test_solution_builder_correctness():
     solutions = solver.solve_puzzle()
     assert len(solutions) == 1
 
-    solutions_builder = SolutionBuilder(solutions, field)
+    solutions_builder = SolutionBuilder(solutions, field, -1)
     solutions_pics = solutions_builder.get_lined_solutions()
     assert len(solutions) == len(solutions_pics)
 
