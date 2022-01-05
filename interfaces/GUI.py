@@ -5,10 +5,13 @@ from tkinter.constants import *
 class GUI:
     def __init__(self, solutions):
         self.solutions = solutions
-        self.puzzle_row_count = len(solutions[0]) // 2
-        self.puzzle_column_count = len(solutions[0][0]) // 2
-        self.width = self.puzzle_column_count * 50
-        self.height = (self.puzzle_row_count + 3) * 50
+        self.width = 0
+        self.height = 0
+        if solutions:
+            self.puzzle_row_count = len(solutions[0]) // 2
+            self.puzzle_column_count = len(solutions[0][0]) // 2
+            self.width = self.puzzle_column_count * 50
+            self.height = (self.puzzle_row_count + 3) * 50
         self.step = 50
         self.horizontal_line_offset = 25
         self.vertical_line_offset = 75
@@ -29,8 +32,15 @@ class GUI:
         my_canvas.create_window((0, 0), window=second_frame, anchor="nw")
         main_frame.pack(fill=BOTH, expand=YES)
 
+        if len(self.solutions):
+            self.paint_solutions(my_canvas)
+        else:
+            my_canvas.create_text(230, 180, text='Решений нет!', font='Helvetica 20 bold')
+        root.mainloop()
+
+    def paint_solutions(self, my_canvas):
         for i, solution in enumerate(self.solutions):
-            my_canvas.create_text(self.step + self.width//2, i * self.height + self.step,
+            my_canvas.create_text(self.step + self.width // 2, i * self.height + self.step,
                                   text=f'Решение {i + 1}', font='Helvetica 20 bold')
             for m in range(1, self.puzzle_column_count + 2):
                 my_canvas.create_line(self.step * m, i * self.height + 2 * self.step,
@@ -42,10 +52,8 @@ class GUI:
                 for k, cell in enumerate(line):
                     self.handle_cell(my_canvas, i, k, j, cell)
 
-        root.mainloop()
-
     def handle_cell(self, canvas, solution_number, matrix_x, matrix_y, cell):
-        item = cell[0]
+        item = cell
         if item == ' ' or item == '0':
             return
         elif item == '-':

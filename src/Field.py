@@ -14,8 +14,7 @@ class Field:
                     if self.numbers.get(field[y][x]) is None:
                         self.numbers[field[y][x]] = [Point(x, y)]
                     else:
-                        self.numbers[field[y][x]].append(
-                            Point(x, y))
+                        self.numbers[field[y][x]].append(Point(x, y))
 
     def __getitem__(self, point):
         return self.cells[point.y][point.x]
@@ -31,8 +30,7 @@ class Field:
         for number in self.numbers.keys():
             if len(self.numbers[number]) != 2:
                 raise ValueError("Каждая цифра отличная от нуля должно встречаться ровно 2 раза")
-
-        if len(self.cells) == 0 or len(self.cells[0]) == 0:
+        if len(self.cells) == 0 or any([True for cell in self.cells if not cell]):
             raise ValueError("Пустая строка")
 
         first_line_width = len(self.cells[0])
@@ -57,4 +55,3 @@ class Field:
         field = cls(cells)
         if field.is_correct_field():
             return field
-        return None

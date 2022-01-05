@@ -4,12 +4,12 @@ class CUI:
 
     def print_solutions(self):
         if len(self.solutions) == 0:
-            print('No solutions')
+            print('Решений нет!')
 
         for i in range(len(self.solutions)):
-            print(f'Solution #{i + 1}')
+            print(f'\nРешение {i + 1}')
             for line in self.solutions[i]:
                 matrix_line = ''
                 for el in line:
-                    matrix_line += el[0]
+                    matrix_line += el
                 print(matrix_line)

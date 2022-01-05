@@ -1,7 +1,7 @@
 import argparse
 from src.Solver import Solver
-from src.CUI import CUI
-from src.GUI import GUI
+from interfaces.CUI import CUI
+from interfaces.GUI import GUI
 from src.Field import Field
 from src.SolutionBuilder import SolutionBuilder
 

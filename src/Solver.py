@@ -6,8 +6,6 @@ class Solver:
 
     def solve_puzzle(self):
         for number in self.field.numbers:
-            if number in self.solved_numbers:
-                continue
             temp_parent_paths = []
             for parent_path in self.parent_paths:
                 temp_parent_paths += self.find_path(self.field.numbers[number][0], self.field.numbers[number][1],

@@ -9,7 +9,7 @@ class SolutionBuilder:
         solutions_pics = []
         for i in range(len(self.solutions)):
             path = self.solutions[i]
-            solve_matrix = [[[' '] for _ in range(self.width * 2 + 1)] for _ in range(self.height * 2 + 1)]
+            solve_matrix = [[' ' for _ in range(self.width * 2 + 1)] for _ in range(self.height * 2 + 1)]
             self.add_numbers(self.field, solve_matrix)
             while path is not None:
                 self.add_lines(path, solve_matrix)
