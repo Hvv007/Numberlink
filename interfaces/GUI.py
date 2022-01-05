@@ -1,5 +1,5 @@
 from tkinter import Tk, Frame, Canvas, ttk
-from tkinter.constants import *
+import tkinter.constants
 
 
 class GUI:
@@ -23,14 +23,14 @@ class GUI:
 
         main_frame = Frame(root)
         my_canvas = Canvas(main_frame)
-        my_canvas.pack(side=LEFT, fill=BOTH, expand=YES)
-        vertical_scrollbar = ttk.Scrollbar(main_frame, orient=VERTICAL, command=my_canvas.yview)
-        vertical_scrollbar.pack(side=RIGHT, fill=Y)
+        my_canvas.pack(side=tkinter.constants.LEFT, fill=tkinter.constants.BOTH, expand=tkinter.constants.YES)
+        vertical_scrollbar = ttk.Scrollbar(main_frame, orient=tkinter.constants.VERTICAL, command=my_canvas.yview)
+        vertical_scrollbar.pack(side=tkinter.constants.RIGHT, fill=tkinter.constants.Y)
         my_canvas.configure(yscrollcommand=vertical_scrollbar.set)
         my_canvas.bind('<Configure>', lambda e: my_canvas.configure(scrollregion=my_canvas.bbox("all")))
         second_frame = Frame(my_canvas)
         my_canvas.create_window((0, 0), window=second_frame, anchor="nw")
-        main_frame.pack(fill=BOTH, expand=YES)
+        main_frame.pack(fill=tkinter.constants.BOTH, expand=tkinter.constants.YES)
 
         if len(self.solutions):
             self.paint_solutions(my_canvas)
